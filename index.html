@@ -78,13 +78,15 @@
       background: rgba(255, 255, 255, .92);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--line);
+      transition: background 0.3s ease, border-color 0.3s ease;
     }
 
     .topbar-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 64px
+      height: 64px;
+      transition: height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .brand {
@@ -108,13 +110,15 @@
       color: var(--ink);
       font-size: 12px;
       font-weight: 800;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, .08)
+      box-shadow: 0 2px 8px rgba(15, 23, 42, .08);
+      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-radius 0.3s ease;
     }
 
     .brand b {
       font-size: 18px;
       color: var(--ink);
-      letter-spacing: .02em
+      letter-spacing: .02em;
+      transition: font-size 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .brand span {
@@ -123,7 +127,39 @@
       color: var(--muted);
       font-weight: 600;
       letter-spacing: .14em;
-      text-transform: uppercase
+      text-transform: uppercase;
+      max-height: 20px;
+      opacity: 1;
+      overflow: hidden;
+      transition: opacity 0.25s ease, max-height 0.25s ease, transform 0.25s ease;
+    }
+
+    /* Scrolled header state */
+    header.topbar.scrolled {
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03);
+    }
+
+    header.topbar.scrolled .topbar-inner {
+      height: 50px;
+    }
+
+    header.topbar.scrolled .brand img,
+    header.topbar.scrolled .brand .logo-fallback {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+    }
+
+    header.topbar.scrolled .brand b {
+      font-size: 16px;
+    }
+
+    header.topbar.scrolled .brand span {
+      opacity: 0;
+      max-height: 0;
+      transform: translateY(-8px);
+      margin: 0;
     }
 
     .nav-ctas {
@@ -854,6 +890,25 @@
         min-width: 140px
       }
     }
+
+    /* ---------- Scroll Reveal Animations ---------- */
+    .js-active .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity;
+    }
+
+    .js-active .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .js-active .reveal.delay-1 { transition-delay: 0.1s; }
+    .js-active .reveal.delay-2 { transition-delay: 0.2s; }
+    .js-active .reveal.delay-3 { transition-delay: 0.3s; }
+    .js-active .reveal.delay-4 { transition-delay: 0.4s; }
+    .js-active .reveal.delay-5 { transition-delay: 0.5s; }
   </style>
 </head>
 
@@ -889,14 +944,14 @@
   <section class="hero" id="top">
     <div class="hero-pattern"></div>
     <div class="wrap">
-      <img class="hero-logo" src="logo.png" alt="DSU Empire"
+      <img class="hero-logo reveal" src="logo.png" alt="DSU Empire"
         onerror="this.outerHTML='&lt;div class=\'hero-logo\' style=\'display:grid\'&gt;DSU&lt;/div&gt;'" />
-      <div class="pill"><span class="dot"></span> Dhanalakshmi Srinivasan University Admission Partner</div>
-      <h1>Confused after +2? <br />We'll guide you to the <em>right college</em></h1>
-      <p class="tamil serif">உங்கள் +2 முடிந்ததா? சரியான படிப்பு &amp; கல்லூரியை நாங்கள் தேர்ந்தெடுக்க உதவுகிறோம்.</p>
-      <p class="sub">Free, friendly guidance for 12th pass-out students. We help you choose the right course, apply for
+      <div class="pill reveal delay-1"><span class="dot"></span> Dhanalakshmi Srinivasan University Admission Partner</div>
+      <h1 class="reveal delay-2">Confused after +2? <br />We'll guide you to the <em>right college</em></h1>
+      <p class="tamil serif reveal delay-3">உங்கள் +2 முடிந்ததா? சரியான படிப்பு &amp; கல்லூரியை நாங்கள் தேர்ந்தெடுக்க உதவுகிறோம்.</p>
+      <p class="sub reveal delay-4">Free, friendly guidance for 12th pass-out students. We help you choose the right course, apply for
         admission, and join the best-fit college — Engineering, Arts &amp; Science, Medical and every degree.</p>
-      <div class="hero-btns">
+      <div class="hero-btns reveal delay-5">
 
         <a class="btn btn-wa"
           href="https://wa.me/919344534270?text=Hi%20DSU%20EMPIRE%2C%20I%20need%20college%20admission%20guidance"
@@ -924,7 +979,7 @@
   </section>
 
   <!-- ===== Stats ===== -->
-  <div class="wrap stats">
+  <div class="wrap stats reveal delay-1">
     <div class="stats-grid">
       <div class="stat"><b>3,700+</b><span>Students Reached</span></div>
       <div class="stat"><b>All TN</b><span>Colleges Covered</span></div>
@@ -935,12 +990,12 @@
   <!-- ===== Services ===== -->
   <section id="services">
     <div class="wrap">
-      <div class="eyebrow">What we do</div>
-      <h2 class="sec-title">Everything you need after 12th</h2>
-      <p class="sec-lead">From confusion to confirmation — we walk with you through every step of your college admission
+      <div class="eyebrow reveal">What we do</div>
+      <h2 class="sec-title reveal">Everything you need after 12th</h2>
+      <p class="sec-lead reveal">From confusion to confirmation — we walk with you through every step of your college admission
         journey.</p>
       <div class="cards">
-        <div class="card">
+        <div class="card reveal delay-1">
           <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3Zm0 13-7-3.8v2.6l7 3.8 7-3.8v-2.6L12 16Z" />
             </svg></div>
@@ -948,7 +1003,7 @@
           <p>Not sure which course fits you? We match your marks, interest and goals to the right degree — Engineering,
             Arts, Science, Medical and more.</p>
         </div>
-        <div class="card">
+        <div class="card reveal delay-2">
           <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
               <path
                 d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm2 16H8v-2h8v2Zm0-4H8v-2h8v2Zm-3-5V3.5L18.5 9H13Z" />
@@ -957,7 +1012,7 @@
           <p>We help you fill applications correctly, arrange documents and complete every form — no confusion, no
             missed deadlines.</p>
         </div>
-        <div class="card">
+        <div class="card reveal delay-3">
           <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5Z" />
             </svg></div>
@@ -972,23 +1027,23 @@
   <!-- ===== Courses ===== -->
   <section id="courses">
     <div class="wrap">
-      <div class="eyebrow">Courses we cover</div>
-      <h2 class="sec-title">Choose from every stream</h2>
-      <p class="sec-lead">Whatever your +2 group, there's a path for you. We guide admissions across all major degrees
+      <div class="eyebrow reveal">Courses we cover</div>
+      <h2 class="sec-title reveal">Choose from every stream</h2>
+      <p class="sec-lead reveal">Whatever your +2 group, there's a path for you. We guide admissions across all major degrees
         in Tamil Nadu.</p>
       <div class="course-grid">
-        <div class="course"><span class="emoji">⚙️</span><b>Engineering</b><small>B.E / B.Tech — all branches</small>
+        <div class="course reveal delay-1"><span class="emoji">⚙️</span><b>Engineering</b><small>B.E / B.Tech — all branches</small>
         </div>
-        <div class="course"><span class="emoji">🩺</span><b>Medical &amp; Allied</b><small>MBBS, BDS, Nursing,
+        <div class="course reveal delay-2"><span class="emoji">🩺</span><b>Medical &amp; Allied</b><small>MBBS, BDS, Nursing,
             Paramedical</small></div>
-        <div class="course"><span class="emoji">📚</span><b>Arts &amp; Science</b><small>B.Sc, B.Com, BA, BBA,
+        <div class="course reveal delay-3"><span class="emoji">📚</span><b>Arts &amp; Science</b><small>B.Sc, B.Com, BA, BBA,
             BCA</small></div>
-        <div class="course"><span class="emoji">💊</span><b>Pharmacy</b><small>B.Pharm, D.Pharm</small></div>
-        <div class="course"><span class="emoji">⚖️</span><b>Law</b><small>BA LLB, BBA LLB</small></div>
-        <div class="course"><span class="emoji">🏨</span><b>Management</b><small>BBA, Hotel Management</small></div>
-        <div class="course"><span class="emoji">🖥️</span><b>Computer &amp; IT</b><small>BCA, B.Sc CS, AI &amp;
+        <div class="course reveal delay-4"><span class="emoji">💊</span><b>Pharmacy</b><small>B.Pharm, D.Pharm</small></div>
+        <div class="course reveal delay-1"><span class="emoji">⚖️</span><b>Law</b><small>BA LLB, BBA LLB</small></div>
+        <div class="course reveal delay-2"><span class="emoji">🏨</span><b>Management</b><small>BBA, Hotel Management</small></div>
+        <div class="course reveal delay-3"><span class="emoji">🖥️</span><b>Computer &amp; IT</b><small>BCA, B.Sc CS, AI &amp;
             DS</small></div>
-        <div class="course"><span class="emoji">🎓</span><b>All Other Degrees</b><small>Agriculture, Design &amp;
+        <div class="course reveal delay-4"><span class="emoji">🎓</span><b>All Other Degrees</b><small>Agriculture, Design &amp;
             more</small></div>
       </div>
       <p class="courses-note">Don't see your course? <a
@@ -1000,23 +1055,23 @@
   <!-- ===== How it works ===== -->
   <section id="how">
     <div class="wrap">
-      <div class="eyebrow">Simple process</div>
-      <h2 class="sec-title">How it works</h2>
-      <p class="sec-lead">Getting into your dream college is just four easy steps away.</p>
+      <div class="eyebrow reveal">Simple process</div>
+      <h2 class="sec-title reveal">How it works</h2>
+      <p class="sec-lead reveal">Getting into your dream college is just four easy steps away.</p>
       <div class="steps">
-        <div class="step">
+        <div class="step reveal delay-1">
           <h3>Message Us</h3>
           <p>Send us a "Hi" on WhatsApp with your +2 marks and interest.</p>
         </div>
-        <div class="step">
+        <div class="step reveal delay-2">
           <h3>Get Guidance</h3>
           <p>We suggest the best courses and colleges that fit you.</p>
         </div>
-        <div class="step">
+        <div class="step reveal delay-3">
           <h3>Apply Together</h3>
           <p>We help you complete applications and documents correctly.</p>
         </div>
-        <div class="step">
+        <div class="step reveal delay-4">
           <h3>Join College</h3>
           <p>We support you until your admission is confirmed. Done!</p>
         </div>
@@ -1027,31 +1082,31 @@
   <!-- ===== Why trust ===== -->
   <section id="trust">
     <div class="wrap">
-      <div class="eyebrow">Why students trust us</div>
-      <h2 class="sec-title">You're in safe hands</h2>
+      <div class="eyebrow reveal">Why students trust us</div>
+      <h2 class="sec-title reveal">You're in safe hands</h2>
       <div class="trust-grid">
-        <div class="trust-item">
+        <div class="trust-item reveal delay-1">
           <div class="tick">✓</div>
           <div>
             <h3>Honest Advice</h3>
             <p>We suggest what's genuinely right for you — not just any college.</p>
           </div>
         </div>
-        <div class="trust-item">
+        <div class="trust-item reveal delay-2">
           <div class="tick">✓</div>
           <div>
             <h3>Free of Cost</h3>
             <p>Our guidance for students is completely free. No hidden charges.</p>
           </div>
         </div>
-        <div class="trust-item">
+        <div class="trust-item reveal delay-3">
           <div class="tick">✓</div>
           <div>
             <h3>Local &amp; Reachable</h3>
             <p>Based in Tamil Nadu, we speak your language and understand your needs.</p>
           </div>
         </div>
-        <div class="trust-item">
+        <div class="trust-item reveal delay-4">
           <div class="tick">✓</div>
           <div>
             <h3>End-to-end Support</h3>
@@ -1065,7 +1120,7 @@
   <!-- ===== Contact CTA ===== -->
   <section id="contact">
     <div class="wrap">
-      <div class="contact-card">
+      <div class="contact-card reveal">
         <h2 class="serif">Ready to start your college journey?</h2>
         <p>Message us today — it's free, friendly and could shape your entire future. Our team replies fast on WhatsApp.
         </p>
@@ -1154,6 +1209,42 @@
 
 
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mark JS active to enable reveal styles
+      document.documentElement.classList.add('js-active');
+
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -60px 0px', // Triggers slightly before entering viewport
+        threshold: 0.02
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      const revealElements = document.querySelectorAll('.reveal');
+      revealElements.forEach(el => observer.observe(el));
+
+      // Sticky header scroll transition (Anthropic style)
+      const header = document.querySelector('header.topbar');
+      const handleScroll = () => {
+        if (window.scrollY > 40) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      };
+      window.addEventListener('scroll', handleScroll);
+      handleScroll(); // run once on load
+    });
+  </script>
 </body>
 
 </html>
