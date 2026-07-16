@@ -17,16 +17,16 @@
     :root {
       --primary: #f5b800;
       --primary-dark: #d97706;
-      --primary-light: #fef3c7;
+      --primary-light: #fffbeb;
       --white: #ffffff;
-      --cream: #fcfbfa;
+      --cream: #ffffff;
       --ink: #0f172a;
       --muted: #475569;
       --line: #e2e8f0;
       --wa: #25d366;
       --radius: 18px;
-      --shadow: 0 10px 30px rgba(245, 184, 0, .08);
-      --shadow-lg: 0 20px 50px rgba(15, 23, 42, .12);
+      --shadow: 0 10px 30px rgba(245, 184, 0, .05);
+      --shadow-lg: 0 20px 50px rgba(15, 23, 42, .05);
     }
 
     * {
@@ -158,11 +158,12 @@
     /* ---------- Hero ---------- */
     .hero {
       position: relative;
-      background: radial-gradient(120% 120% at 50% -10%, #1e293b 0%, #0f172a 45%, #020617 100%);
-      color: #fff;
+      background: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%);
+      color: var(--ink);
       text-align: center;
       padding: 56px 0 72px;
       overflow: hidden;
+      border-bottom: 1px solid var(--line);
     }
 
     .hero::before,
@@ -171,7 +172,7 @@
       position: absolute;
       border-radius: 50%;
       filter: blur(2px);
-      opacity: .15;
+      opacity: .1;
       background: var(--primary)
     }
 
@@ -202,7 +203,7 @@
       margin: 0 auto 18px;
       display: block;
       padding: 10px;
-      box-shadow: 0 0 0 4px rgba(245, 184, 0, .35), var(--shadow-lg);
+      box-shadow: 0 0 0 4px rgba(245, 184, 0, .2), var(--shadow-lg);
       background: #fff;
       color: var(--ink);
       font-weight: 800;
@@ -214,9 +215,9 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255, 255, 255, .12);
-      border: 1px solid rgba(255, 255, 255, .25);
-      color: var(--primary);
+      background: rgba(245, 184, 0, .08);
+      border: 1px solid rgba(245, 184, 0, .2);
+      color: var(--primary-dark);
       font-weight: 600;
       font-size: 13px;
       padding: 6px 14px;
@@ -241,19 +242,19 @@
 
     .hero h1 em {
       font-style: normal;
-      color: var(--primary)
+      color: var(--primary-dark)
     }
 
     .hero .tamil {
       font-size: clamp(15px, 3.4vw, 19px);
-      color: var(--primary-light);
+      color: var(--primary-dark);
       font-weight: 500;
       margin-bottom: 10px
     }
 
     .hero p.sub {
       font-size: clamp(15px, 3.4vw, 18px);
-      color: #e2e8f0;
+      color: var(--muted);
       max-width: 640px;
       margin: 0 auto 30px
     }
@@ -302,12 +303,12 @@
 
     .btn-ghost {
       background: transparent;
-      color: #fff;
-      border-color: rgba(255, 255, 255, .4)
+      color: var(--ink);
+      border-color: var(--line)
     }
 
     .btn-ghost:hover {
-      background: rgba(255, 255, 255, .1)
+      background: rgba(15, 23, 42, .05)
     }
 
     .trust-row {
@@ -316,7 +317,7 @@
       gap: 8px 26px;
       flex-wrap: wrap;
       margin-top: 34px;
-      color: #e2e8f0;
+      color: var(--muted);
       font-size: 13px;
       font-weight: 500
     }
@@ -328,7 +329,7 @@
     }
 
     .trust-row svg {
-      color: var(--primary)
+      color: var(--primary-dark)
     }
 
     /* ---------- Stats ---------- */
@@ -544,16 +545,18 @@
 
     /* ---------- Why trust ---------- */
     #trust {
-      background: #0f172a;
-      color: #fff
+      background: #ffffff;
+      color: var(--ink);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
 
     #trust .eyebrow {
-      color: var(--primary)
+      color: var(--primary-dark)
     }
 
     #trust .sec-title {
-      color: #fff
+      color: var(--ink)
     }
 
     .trust-grid {
@@ -568,8 +571,8 @@
       display: flex;
       gap: 14px;
       align-items: flex-start;
-      background: rgba(255, 255, 255, .06);
-      border: 1px solid rgba(255, 255, 255, .12);
+      background: #fffdf5;
+      border: 1px solid var(--primary-light);
       border-radius: 14px;
       padding: 18px
     }
@@ -588,13 +591,13 @@
 
     .trust-item h3 {
       font-size: 16px;
-      color: var(--primary);
+      color: var(--primary-dark);
       margin-bottom: 3px
     }
 
     .trust-item p {
       font-size: 14px;
-      color: #e2e8f0
+      color: var(--muted)
     }
 
     /* ---------- CTA / Contact ---------- */
@@ -603,10 +606,11 @@
     }
 
     .contact-card {
-      background: linear-gradient(135deg, #1e293b, #020617);
+      background: linear-gradient(135deg, #fffbeb, #ffffff);
+      border: 1px solid var(--primary-light);
       border-radius: 26px;
       padding: 44px 26px;
-      color: #fff;
+      color: var(--ink);
       box-shadow: var(--shadow-lg);
       position: relative;
       overflow: hidden
@@ -618,7 +622,7 @@
     }
 
     .contact-card p {
-      color: #e2e8f0;
+      color: var(--muted);
       max-width: 520px;
       margin: 0 auto 28px
     }
@@ -658,24 +662,32 @@
 
     .cbtn.call {
       background: #fff;
+      border: 1px solid var(--line);
       color: var(--ink)
     }
 
     .cbtn.mail {
-      background: rgba(255, 255, 255, .12);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, .3)
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--ink)
     }
 
     .cbtn.insta {
-      background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
-      color: #fff
+      background: #ffffff;
+      border: 1px solid var(--primary-light);
+      color: var(--ink);
+      box-shadow: var(--shadow)
+    }
+
+    .cbtn.insta:hover {
+      background: var(--primary-light)
     }
 
     /* ---------- Footer ---------- */
     footer {
-      background: #090d16;
-      color: #cbd5e1;
+      background: #fffdf5;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
       padding: 34px 0;
       text-align: center
     }
@@ -686,7 +698,7 @@
     }
 
     footer .brand b {
-      color: #fff
+      color: var(--ink)
     }
 
     footer .socials {
@@ -702,13 +714,15 @@
       border-radius: 50%;
       display: grid;
       place-items: center;
-      background: rgba(255, 255, 255, .1);
-      color: #fff;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      color: var(--muted);
       transition: .18s
     }
 
     footer .socials a:hover {
       background: var(--primary);
+      border-color: var(--primary);
       color: var(--ink);
       transform: translateY(-2px)
     }
